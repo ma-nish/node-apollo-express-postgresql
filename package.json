@@ -1,0 +1,30 @@
+{
+  "name": "fullstack-apollo-express-postgresql-boilerplate",
+  "version": "1.0.0",
+  "description": "A full-fledged Apollo Server with Apollo Client starter project with React and Express.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/index.js",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "keywords": [
+    "node.js"
+  ],
+  "author": "Manish Maurya",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/node": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "apollo-server": "^2.9.16",
+    "apollo-server-express": "^2.9.16",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "uuid": "^3.4.0"
+  }
+}
