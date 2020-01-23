@@ -1,11 +1,3 @@
-// import messages from './message';
-// import users from './user';
-
-// export default {
-//   messages,
-//   users
-// }
-
 import Sequelize from 'sequelize';
 
 const sequelize = new Sequelize(
@@ -13,9 +5,14 @@ const sequelize = new Sequelize(
   process.env.DATABASE_USER,
   process.env.DATABASE_PASSWORD,
   {
+    host: 'localhost',
     dialect: 'postgres',
   },
 );
+
+// const sequelize = new Sequelize("postgres://postgres:postgres@localhost/mydb", {
+//   dialect: 'postgres'
+// })
 
 const models = {
   User: sequelize.import('./user'),
