@@ -14,6 +14,17 @@ app.use(cors());
 const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
+  formatError: error => {
+    // remove the internal sequelize error message
+    // leave only the important validation error
+    const message = error.message
+      .replace('SequelizeValidationError: ', '')
+      .replace('Validation error: ', '');
+    return {
+      ...error,
+      message,
+    };
+  },
   context: async () => ({
     models,
     me: await models.User.findByLogin('manishmaurya'),
@@ -30,7 +41,7 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
   }
 
   app.listen({ port: 8000 }, () => {
-    console.log('Apollo Server on http://localhost:8000/graphql');
+    console.log(`🚀  Server ready at http://localhost:8000/graphql`);
   });
 });
 
