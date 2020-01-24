@@ -19,7 +19,7 @@ export default {
     },
 
     user: async (parent, { id }, { models }) => {
-      return await models.User.findById(id);
+      return await models.User.findByPk(id);
     },
 
     me: async (parent, args, { models, me }) => {
@@ -27,7 +27,7 @@ export default {
         return null;
       }
 
-      return await models.User.findById(me.id);
+      return await models.User.findByPk(me.id);
     },
   },
 
@@ -65,7 +65,7 @@ export default {
         throw new AuthenticationError('Invalid password.');
       }
 
-      return { token: createToken(user, secret, '30m') };
+      return { token: createToken(user, secret, '300m') };
     },
 
     deleteUser: combineResolvers(
