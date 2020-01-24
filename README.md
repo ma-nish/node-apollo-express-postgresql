@@ -1,1 +1,1 @@
-# fullstack-apollo-express-postgresql-boilerplate
+# node-apollo-express-postgresql
