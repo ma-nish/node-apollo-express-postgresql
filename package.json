@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
-    "test": "echo \"No test specified\" && exit 0"
+    "test-server": "TEST_DATABASE=testdatabase npm start",
+    "test": "mocha --require @babel/register 'src/**/*.spec.js'"
   },
   "keywords": [
     "node.js"
@@ -16,6 +17,10 @@
     "@babel/core": "^7.8.3",
     "@babel/node": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
+    "@babel/register": "^7.8.3",
+    "axios": "^0.19.2",
+    "chai": "^4.2.0",
+    "mocha": "^7.0.1",
     "nodemon": "^2.0.2"
   },
   "dependencies": {
