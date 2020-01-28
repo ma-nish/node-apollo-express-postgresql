@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import DataLoader from 'dataloader';
 import http from 'http';
 import cors from 'cors';
 import express from 'express';
@@ -8,6 +9,7 @@ import { ApolloServer, AuthenticationError, } from 'apollo-server-express';
 import schema from './Schema';
 import resolvers from './Resolvers';
 import models, { sequelize } from './Models';
+import loaders from './loaders';
 
 const app = express();
 
@@ -45,6 +47,11 @@ const server = new ApolloServer({
     if (connection) {
       return {
         models,
+        loaders: {
+          user: new DataLoader(keys =>
+            loaders.user.batchUsers(keys, models),
+          ),
+        }
       };
     }
 
@@ -55,6 +62,11 @@ const server = new ApolloServer({
         models,
         me,
         secret: process.env.SECRET,
+        loaders: {
+          user: new DataLoader(keys =>
+            loaders.user.batchUsers(keys, models),
+          ),
+        },
       };
     }
   },
